@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Leah May Pagubo - Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-section">
+                <img src="pp.jpg" alt="Leah May Pagubo">
+                <div class="header-info">
+                    <h1>Leah May Pagubo</h1>
+                    <p>BSIT Student | Aspiring System Analyst</p>
+                </div>
+            </div>
+            <nav>
+                <a href="#about" class="active">About</a>
+                <a href="#education">Education</a>
+                <a href="#experience">Experience</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>I am a BSIT student with a strong passion for technology and innovation. Highly adaptable and quick to learn new tools, environments, and emerging technologies. Known for being collaborative, detail-oriented, and committed to delivering quality results.</p>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <ul>
+                <li><strong>BS in Information Technology</strong> - STI West Negros University (2022–2026)</li>
+                <li><strong>Information and Communication Technology (ICT)</strong> - La Consolacion College Bacolod (2020–2022)</li>
+            </ul>
+        </section>
+
+        <section id="experience">
+            <h2>Work Experience</h2>
+            <ul>
+                <li><strong>Encoder</strong> - Tutok Politika (May 2022)<br>
+                • Accurately encoded election-related data while maintaining confidentiality.<br>
+                • Verified and cross-checked information for accuracy.
+                </li>
+            </ul>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skills">
+                <span>Analytical & Problem Solving</span>
+                <span>Data Analysis</span>
+                <span>Microsoft Excel</span>
+                <span>Microsoft Word</span>
+                <span>Project Management</span>
+                <span>Database Management (MySQL, SQL Server)</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>Languages</h2>
+            <p>English | Filipino | Hiligaynon</p>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <p>Email: <a class="email-link" href="mailto:paguboleahmay@gmail.com">paguboleahmay@gmail.com</a></p>
+            <p>Phone: 0994-978-3511</p>
+            <p>Location: Brgy. Villamonte, Bacolod City, Negros Occidental</p>
+        </section>
+
+        <footer>
+            &copy; 2025 Leah May Pagubo | All Rights Reserved
+        </footer>
+    </div>
+
+    <button id="topBtn">↑</button>
+
+    <script>
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll("nav a");
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+            });
+        }, { threshold: 0.2 });
+        sections.forEach(section => observer.observe(section));
+
+        navLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                navLinks.forEach(nav => nav.classList.remove("active"));
+                link.classList.add("active");
+            });
+        });
+
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute("id");
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === "#" + current) {
+                    link.classList.add("active");
+                }
+            });
+        });
+
+        const topBtn = document.getElementById("topBtn");
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 300) {
+                topBtn.classList.add("show");
+            } else {
+                topBtn.classList.remove("show");
+            }
+        });
+        topBtn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
